@@ -52,7 +52,7 @@ https://razorpay.com/docs/api/
 ```
 
 ## Architecture
-
+![VoiceBasedHotelBooking](https://user-images.githubusercontent.com/92615235/219964249-89f4c8cf-4de7-4749-bc1a-906d0635e7ff.png)
 
 ## FUTURE ASPECT
 
