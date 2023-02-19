@@ -24,9 +24,11 @@
 
 ## Tech-Stack
 
-Client : ReactJs
-Server : NodeJS, ExpressJs
-Database : MySQL
+#### Client : ReactJs
+
+#### Server : NodeJS, ExpressJs
+
+#### Database : MySQL
 
 ## APIs and Packages 
 
