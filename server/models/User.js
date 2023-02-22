@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) =>{
+    const phoneValidationRegex = /^[789]\d{9}$/
     const User = sequelize.define('User',{
         firstName:{
             type: DataTypes.STRING,
@@ -42,11 +43,13 @@ module.exports = (sequelize, DataTypes) =>{
                 notEmpty: true
             }
         },
-        PhoneNo:{
-            type: DataTypes.INTEGER,
+        PhoneNo: {
+            type: DataTypes.STRING,
             allowNull: false,
-            validate:{
-                notEmpty: true
+            validate: {
+                validator: function(v) {
+                    return phoneValidationRegex.test(v); 
+                },
             }
         },
         EmailAddress:{
