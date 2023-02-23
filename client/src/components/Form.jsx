@@ -6,6 +6,10 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import { useNavigate } from 'react-router-dom';
+// fixing 
+import wordsToNumbers from 'words-to-numbers';
+import dateFormat, { masks } from "dateformat";
 
 function Form() {
     const firstNameRef = useRef();
@@ -21,6 +25,7 @@ function Form() {
     console.log({ checked })
     // const [message, setMessage] = useState('')
 
+    const navigate = useNavigate();
 
 
     React.useEffect(() => {
@@ -36,7 +41,6 @@ function Form() {
 
     const clickedmic = () => {
         setChecked(!checked)
-
     }
 
     const handleSubmit = (event) => {
@@ -51,7 +55,6 @@ function Form() {
         const NoOfGuests = noOfGuestsRef.current.value.trim();
         const PhoneNo = phoneNoRef.current.value.trim();
         const EmailAddress = emailAddressRef.current.value.trim();
-
 
         if (firstName === '') {
             alert('Please enter your first name.');
@@ -69,9 +72,12 @@ function Form() {
             alert('Please enter the Destination.');
             return;
         }
+        dateFormat(`${travelDate}`, "travelDate");
+        
         if (travelDate === '') {
             alert('Please enter the travel Date.');
             return;
+
         }
         if (NoOfGuests === '') {
             alert('Please enter the No Of Guests.');
@@ -93,7 +99,8 @@ function Form() {
         // console.log(payload);
         axios.post("http://localhost:3001/users", JSON.parse(JSON.stringify(payload))).then((Response) => {
             console.log("it worked")
-            alert("submitted")
+            // alert("submitted")
+            navigate('/hotels');
         });
 
         // reset the form
@@ -204,6 +211,8 @@ function Form() {
         }
     }, [])
 
+    // let noOfGuestInnumeric =wordsToNumbers(`${noOfGuestsRef.current?.value}`)
+
     return (
         <div className='input-form'>
             <form onSubmit={handleSubmit} className="formContainer">
@@ -235,7 +244,12 @@ function Form() {
                 <div>
                     <label htmlFor="noOfGuests">No. of Guests:</label>
                     <input type="number" id="NoOfGuests" placeholder="(Ex. NoOfGuests...)" ref={noOfGuestsRef} value={noOfGuestsRef.current?.value} />
-                </div>
+                </div>       
+
+                {/* <div>
+                    <label htmlFor="noOfGuests">No. of Guests:</label>
+                    <input type="number" id="NoOfGuests" placeholder="(Ex. NoOfGuests...)" ref={noOfGuestsRef} value={noOfGuestInnumeric} />
+                </div>   */}
 
                 <div>
                     <label htmlFor="phoneNo">Phone No.:</label>
