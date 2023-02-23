@@ -6,7 +6,7 @@ const {User} = require('..//models');
 router.get("/", async(req,res) => {
     const listofUser = await User.findAll();
     res.json(listofUser);
-})
+}) 
 
 router.post("/", async (req,res) => {
     const user = req.body;

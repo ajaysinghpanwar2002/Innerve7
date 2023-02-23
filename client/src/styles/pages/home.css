@@ -1,0 +1,16 @@
+.homepage{
+    display: flex;
+    background-color: red;
+    height: 100vh;
+}
+.sampleCommands{
+    width: 50%;
+    background-color: blue;
+}
+.home-inputForm{
+    width: 50%;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

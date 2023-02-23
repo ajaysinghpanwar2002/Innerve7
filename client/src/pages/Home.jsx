@@ -1,17 +1,18 @@
 import React from 'react'
-import InputForm from '../components/InputForm'
+import Form from '../components/Form'
+import '../styles/pages/home.css'
 
 function Home() {
   return (
-    <div>
-      <div>
+    <div className='homepage'>
+      <div className='sampleCommands'>
         sample commands
       </div>
-      <div>
-        <InputForm/>
+      <div className='home-inputForm'>
+        <Form/>
       </div>
     </div>
   )
 }
 
-export default Home
+export default Home 

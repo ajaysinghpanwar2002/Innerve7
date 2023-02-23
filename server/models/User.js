@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) =>{
             }
         },
         age:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             validate:{
                 notEmpty: true
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) =>{
             }
         },
         NoOfGuests:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             validate:{
                 notEmpty: true
