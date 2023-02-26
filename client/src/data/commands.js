@@ -1,6 +1,9 @@
 export default [
     {
-        dialog: "Name: My Name is *"
+        dialog: "Name: My First Name is *"
+    },
+    {
+        dialog: "Name: My last Name is *"
     },
     {
         dialog: "Age: I am * years old"
@@ -13,6 +16,12 @@ export default [
     },
     {
         dialog: "Travel Date: I have a ticket on * "
+    },
+    {
+        dialog: "CheckIn date: I want to book hotel from *"
+    },
+    {
+        dialog: "CheckOut date: Till *"
     },
     {
         dialog: "Guests: we are * people"

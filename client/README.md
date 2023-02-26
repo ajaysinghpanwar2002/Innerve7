@@ -27,7 +27,7 @@ https://www.npmjs.com/package/dateformat
 https://www.npmjs.com/package/node-geocoder
 ```
 
-2) i'll be using Imapala Api for booking hotels 
+2) i'll be using Travel Advisor Api for booking hotels 
 ```
-https://docs.impala.travel/docs/booking-api
-```
+https://rapidapi.com/apidojo/api/travel-advisor```
+

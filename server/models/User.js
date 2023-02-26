@@ -8,6 +8,13 @@ module.exports = (sequelize, DataTypes) =>{
                 notEmpty: true
             }
         },
+        lastName:{
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate:{
+                notEmpty: true
+            }
+        },
         age:{
             type: DataTypes.STRING,
             allowNull: false,
@@ -30,6 +37,20 @@ module.exports = (sequelize, DataTypes) =>{
             }
         },
         travelDate:{
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate:{
+                notEmpty: true
+            }
+        },
+        checkInDate:{
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate:{
+                notEmpty: true
+            }
+        },
+        checkOutDate:{
             type: DataTypes.STRING,
             allowNull: false,
             validate:{
