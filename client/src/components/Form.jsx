@@ -7,9 +7,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import { useNavigate } from 'react-router-dom';
-// fixing 
-import wordsToNumbers from 'words-to-numbers';
-import dateFormat, { masks } from "dateformat";
 
 function Form() {
     const firstNameRef = useRef();
@@ -81,7 +78,6 @@ function Form() {
             alert('Please enter the Destination.');
             return;
         }
-        dateFormat(`${travelDate}`, "travelDate");
 
         if (travelDate === '') {
             alert('Please enter the travel Date.');

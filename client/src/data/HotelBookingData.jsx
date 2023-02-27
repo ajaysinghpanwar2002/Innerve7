@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
-// var geocoder = require('geocoder');
 import dateFormat from 'dateformat';
 
-function Hotels() {
-    // 8 states 
+function HotelBookingData() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -58,42 +56,10 @@ function Hotels() {
     // console.log(checkInDate);
     // console.log(checkOutDate);
 
-    // for params we have now => checkInDate, checkOutDate, lat, lon, adults
-
-    useEffect(() => {
-        const fetchHotels = async () => {
-            try {
-                const options = {
-                    method: 'GET',
-                    url: 'https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng',
-                    params: {
-                        latitude: lat,
-                        longitude: lon,
-                        lang: 'en_US',
-                        limit: '30',
-                        adults: adults,
-                        checkin: checkInDate,
-                        nights: '2'
-                    },
-                    headers: {
-                        'X-RapidAPI-Key': 'f653f9944amsh1059ac4e6bf88ecp106dc7jsn3faca1ff2942',
-                        'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-                    }
-                };
-                const hotelsData = await axios.request(options);
-                console.log(hotelsData.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchHotels();
-    }, [lat, lon, adults, checkInDate]);
-
+        // for params we have now => checkInDate, checkOutDate, lat, lon, adults
     return (
-        <div>
-            <h1>List of hotels in {location} it latitude is {lat} and longitude is {lon} on {checkIn}</h1>
-        </div>
+        <div>HotelBookingData</div>
     )
 }
 
-export default Hotels
+export default HotelBookingData
