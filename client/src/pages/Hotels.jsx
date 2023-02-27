@@ -6,6 +6,11 @@ import dateFormat from 'dateformat';
 import Loader from '../components/Loader';
 import HotelCard from '../components/HotelCard';
 
+// fake hostels
+import fakeHosteldata from '../data/FakeHotel.js'
+import FakeHotel from '../data/FakeHotel.js';
+import '../styles/components/hotelCard.css'
+
 function Hotels() {
     const [loading, setLoading] = useState(true);
     const [firstName, setFirstName] = useState('');
@@ -37,10 +42,10 @@ function Hotels() {
 
                 const options = {
                     method: 'GET',
-                    url: 'https://trueway-geocoding.p.rapidapi.com/Geocode',
+                    // url: 'https://trueway-geocoding.p.rapidapi.com/Geocode',
                     params: { address: location, language: 'en' },
                     headers: {
-                        'X-RapidAPI-Key': 'f653f9944amsh1059ac4e6bf88ecp106dc7jsn3faca1ff2942',
+                        'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_API_KEY,
                         'X-RapidAPI-Host': 'trueway-geocoding.p.rapidapi.com'
                     }
                 };
@@ -65,7 +70,7 @@ function Hotels() {
             try {
                 const options = {
                     method: 'GET',
-                    url: 'https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng',
+                    // url: 'https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng',
                     params: {
                         // latitude: lat,
                         // longitude: lon,
@@ -78,12 +83,12 @@ function Hotels() {
                         nights: '2'
                     },
                     headers: {
-                        'X-RapidAPI-Key': 'f653f9944amsh1059ac4e6bf88ecp106dc7jsn3faca1ff2942',
+                        'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_API_KEY,
                         'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
                     }
                 };
                 const hotelsData = await axios.request(options);
-                console.log(hotelsData.data);
+                console.log(hotelsData.data.data);
                 setHotelsBigData(hotelsData.data.data);
                 setLoading(false);
             } catch (error) {
@@ -94,16 +99,17 @@ function Hotels() {
         fetchHotels();
     }, [lat, lon, adults, checkInDate]);
 
-    
+
     return (
         <div>
-            {
+            {/* {
                 loading ? <Loader /> : (
                     <div>
-                        {Array.isArray(hotelsBigData) && hotelsBigData.map((i) => {
+                        {Array.isArray(hotelsBigData) && FakeHotel.map((i) => {
                             return (
                                 <HotelCard
-                                    key={i.id}
+                                    id = {i.location_id}
+                                    key={i.location_id}
                                     name={i.name}
                                     img={i.photo.images.original.url}
                                     reviews={i.num_reviews}
@@ -114,6 +120,24 @@ function Hotels() {
                         })}
                     </div>
                 )
+            } */}
+            {
+                    <div className="card-container">
+                        {FakeHotel.map((i) => {
+                            return (
+                                <HotelCard
+                                    id={i.location_id}
+                                    key={i.location_id}
+                                    name={i.name}
+                                    // img={i.photo.images.original.url}
+                                    reviews={i.num_reviews}
+                                    price={i.price}
+                                    rating={i.rating}
+                                />
+                            )
+                        })} 
+                    </div>
+                
             }
         </div>
     )
