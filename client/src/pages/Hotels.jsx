@@ -3,9 +3,11 @@ import { useEffect } from 'react'
 import axios from 'axios'
 // var geocoder = require('geocoder');
 import dateFormat from 'dateformat';
+import Loader from '../components/Loader';
+import HotelCard from '../components/HotelCard';
 
 function Hotels() {
-    // 8 states 
+    const [loading, setLoading] = useState(true);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -17,6 +19,8 @@ function Hotels() {
     // latitude and longitude
     const [lat, setLat] = useState('');
     const [lon, setLon] = useState('');
+    // final data from api 
+    const [hotelsBigData, setHotelsBigData] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -54,11 +58,7 @@ function Hotels() {
 
 
     const checkInDate = dateFormat(checkIn, 'yyyy-mm-dd');
-    const checkOutDate = dateFormat(checkOut, 'yyyy-mm-dd');
-    // console.log(checkInDate);
-    // console.log(checkOutDate);
-
-    // for params we have now => checkInDate, checkOutDate, lat, lon, adults
+    // const checkOutDate = dateFormat(checkOut, 'yyyy-mm-dd');
 
     useEffect(() => {
         const fetchHotels = async () => {
@@ -67,8 +67,10 @@ function Hotels() {
                     method: 'GET',
                     url: 'https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng',
                     params: {
-                        latitude: lat,
-                        longitude: lon,
+                        // latitude: lat,
+                        // longitude: lon,
+                        latitude: '18.5204',
+                        longitude: '73.8567',
                         lang: 'en_US',
                         limit: '30',
                         adults: adults,
@@ -82,18 +84,40 @@ function Hotels() {
                 };
                 const hotelsData = await axios.request(options);
                 console.log(hotelsData.data);
+                setHotelsBigData(hotelsData.data.data);
+                setLoading(false);
             } catch (error) {
                 console.error(error);
+                setLoading(false);
             }
         };
         fetchHotels();
     }, [lat, lon, adults, checkInDate]);
 
+    
     return (
         <div>
-            <h1>List of hotels in {location} it latitude is {lat} and longitude is {lon} on {checkIn}</h1>
+            {
+                loading ? <Loader /> : (
+                    <div>
+                        {Array.isArray(hotelsBigData) && hotelsBigData.map((i) => {
+                            return (
+                                <HotelCard
+                                    key={i.id}
+                                    name={i.name}
+                                    img={i.photo.images.original.url}
+                                    reviews={i.num_reviews}
+                                    price={i.price}
+                                    rating={i.rating}
+                                /> 
+                            )
+                        })}
+                    </div>
+                )
+            }
         </div>
     )
-}
+};
+
 
 export default Hotels
