@@ -3,8 +3,10 @@ import '../styles/components/loader.css'
 
 function Loader() {
   return (
-    <div className='loader'></div>
+    <span className='loader'>
+      
+    </span>
   )
 }
 
-export default Loader
+export default Loader 

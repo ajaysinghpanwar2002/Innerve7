@@ -9,8 +9,8 @@ const HotelCard = ({ id, name, img, reviews, price, rating }) => {
                     <img src={img} alt="img" />
                 </div>
                 <div className='hotel-card-second'>
-                    <div>{rating}</div>
-                    <div>{reviews}</div>
+                    <div>Rating: {rating}</div>
+                    <div>Reviews: {reviews}</div>
                 </div>
                 <div className='hostel-card-third'>
                     <div>{name}</div>

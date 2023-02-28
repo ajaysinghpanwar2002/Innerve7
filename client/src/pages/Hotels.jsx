@@ -7,9 +7,9 @@ import Loader from '../components/Loader';
 import HotelCard from '../components/HotelCard';
 
 // fake hostels
-import fakeHosteldata from '../data/FakeHotel.js'
 import FakeHotel from '../data/FakeHotel.js';
 import '../styles/components/hotelCard.css'
+import ErorComponent from '../components/ErorComponent';
 
 function Hotels() {
     const [loading, setLoading] = useState(true);
@@ -56,6 +56,7 @@ function Hotels() {
                 setLon(locationData.data.results[0].location.lng);
             } catch (error) {
                 console.error(error);
+                <ErorComponent/>
             }
         };
         fetchData();
@@ -72,10 +73,10 @@ function Hotels() {
                     method: 'GET',
                     // url: 'https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng',
                     params: {
-                        // latitude: lat,
-                        // longitude: lon,
-                        latitude: '18.5204',
-                        longitude: '73.8567',
+                        latitude: lat,
+                        longitude: lon,
+                        // latitude: '18.5204',
+                        // longitude: '73.8567',
                         lang: 'en_US',
                         limit: '30',
                         adults: adults,
@@ -94,6 +95,7 @@ function Hotels() {
             } catch (error) {
                 console.error(error);
                 setLoading(false);
+                <ErorComponent/>
             }
         };
         fetchHotels();
@@ -101,45 +103,57 @@ function Hotels() {
 
 
     return (
-        <div>
-            {/* {
-                loading ? <Loader /> : (
-                    <div>
-                        {Array.isArray(hotelsBigData) && FakeHotel.map((i) => {
-                            return (
-                                <HotelCard
-                                    id = {i.location_id}
-                                    key={i.location_id}
-                                    name={i.name}
-                                    img={i.photo.images.original.url}
-                                    reviews={i.num_reviews}
-                                    price={i.price}
-                                    rating={i.rating}
-                                /> 
-                            )
-                        })}
-                    </div>
-                )
-            } */}
-            {
-                    <div className="card-container">
-                        {FakeHotel.map((i) => {
-                            return (
-                                <HotelCard
-                                    id={i.location_id}
-                                    key={i.location_id}
-                                    name={i.name}
-                                    // img={i.photo.images.original.url}
-                                    reviews={i.num_reviews}
-                                    price={i.price}
-                                    rating={i.rating}
-                                />
-                            )
-                        })} 
-                    </div>
-                
-            }
-        </div>
+        <>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                // height: '100vh',
+                width: 'auto',
+                background: '#f8f8f8'
+            }}>
+                <h1>List of Hotels in {location}</h1>
+            </div>
+            <div>
+                {
+                    loading ? <Loader /> : (
+                        <div className="card-container">
+                            {Array.isArray(hotelsBigData) ? (hotelsBigData.map((i) => {
+                                return (
+                                    <HotelCard
+                                        id={i.location_id}
+                                        key={i.location_id}
+                                        name={i.name}
+                                        img={i.photo?.images?.original?.url || 'https://media-cdn.tripadvisor.com/media/photo-o/08/17/37/eb/concordia-guesthouse.jpg'}
+                                        reviews={i.num_reviews}
+                                        price={i.price}
+                                        rating={i.rating}
+                                    />
+                                )
+                            })) :
+                                (<div className="card-container">
+                                    {FakeHotel.map((i) => {
+                                        return (
+                                            <HotelCard
+                                                id={i.location_id}
+                                                key={i.location_id}
+                                                name={i.name}
+                                                img={i.photo?.images?.original?.url || 'https://media-cdn.tripadvisor.com/media/photo-o/08/17/37/eb/concordia-guesthouse.jpg'}
+                                                reviews={i.num_reviews}
+                                                price={i.price}
+                                                rating={i.rating}
+                                            />
+                                        )
+                                    })}
+                                </div>
+                                )
+                            }
+                        </div>
+                    )
+                }
+            </div>
+        </>
     )
 };
 

@@ -1,0 +1,36 @@
+.hotel-details-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.hotel-details-card__image {
+    flex: 0 0 300px;
+    margin-right: 20px;
+}
+
+.hotel-details-card__image img {
+    width: 100%;
+}
+
+.hotel-details-card__content {
+    flex: 1 1 300px;
+}
+
+.hotel-details-card__name {
+    font-size: 24px;
+    margin: 0 0 10px;
+}
+
+.hotel-details-card__address,
+.hotel-details-card__phone,
+.hotel-details-card__category,
+.hotel-details-card__price,
+.hotel-details-card__reviews,
+.hotel-details-card__timezone,
+.hotel-details-card__about,
+.hotel-details-card__availability {
+    font-size: 16px;
+    margin: 0 0 5px;
+}
