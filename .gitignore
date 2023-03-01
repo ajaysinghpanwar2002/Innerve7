@@ -2,3 +2,4 @@
 /client/node_modules/
 /Notes.md
 /client/.env
+/server/.env

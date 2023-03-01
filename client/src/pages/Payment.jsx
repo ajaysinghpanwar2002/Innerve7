@@ -14,7 +14,7 @@ function Payment() {
             <h1>Book your hotel with Udchalein</h1>
             {showItem ? (<StripeContainer />) : (
                 <div>
-                    <h3>total Bill: {price}</h3>
+                    <h3>Bill Range: {price}<br/>For the hotel id {id}</h3>
                     <button onClick={() => setShowItem(true)}>Book Hotel</button>
                 </div>
             )}

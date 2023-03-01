@@ -65,4 +65,4 @@ https://razorpay.com/docs/api/
 3) By using natural language processing and clear feedback, we can ensure that users are able to book a hotel ticket quickly and easily, without having to navigate a complex user interface.
 
 ## Mentor
-![Dheeraj sir](https://github.com/dheeraj120501)
+[Dheeraj sir](https://github.com/dheeraj120501)
