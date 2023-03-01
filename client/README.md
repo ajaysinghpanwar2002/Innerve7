@@ -4,7 +4,7 @@ client side
 1) /  => home page 
 2) /hotels => list of hotels 
 2.1) /hotels/id => individual hotel
-3) /payment => payment gateway
+3) /payment/id/price => payment gateway
 
 home page 
 1) input component
@@ -30,3 +30,9 @@ hotel/id
 
 1) hotel suggestion to user on whatsapp and gmail.
 2) clicks link redirect them to /hotels/id page 
+
+
+all payment at 
+```
+https://dashboard.stripe.com/test/payments
+```

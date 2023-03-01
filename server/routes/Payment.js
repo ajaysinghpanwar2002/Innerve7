@@ -33,7 +33,9 @@ router.get("/", async (req, res) => {
             "payment_status": "success",
             "payment_id": 192301,
             "success": true,
-            "company": "Udchalein"
+            "company": "Udchalein",
+            "currency": "INR",
+            "amount": 1000,
         });
     } catch (err) {
         console.error(err);
