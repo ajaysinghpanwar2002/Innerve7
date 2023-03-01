@@ -32,25 +32,29 @@
 
 ## APIs and Packages 
 
-1) Google’s Speech-to-text
+1) react-speech-recognition
 ```
-https://cloud.google.com/speech-to-text
+https://www.npmjs.com/package/react-speech-recognition
 ```
-2) Google Hotel's API
+2) Travel Advisor Hotel's API
 ```
-https://developers.google.com/hotels
+https://rapidapi.com/apidojo/api/travel-advisor
 ```
-3) WhatsApp Business API Twilio
+3) Geocoding API 
+```
+https://rapidapi.com/trueway/api/trueway-geocoding
+```
+4) WhatsApp Business API Twilio
 ```
 https://www.twilio.com/whatsapp
 ```
-4) EmailJs Package
+5) EmailJs Package
 ```
 https://www.emailjs.com/
 ```
-5) RazorPay Payment Gateway
+6) Stripe Payment Gateway
 ```
-https://razorpay.com/docs/api/
+https://dashboard.stripe.com/test/payments
 ```
 
 ## Architecture
