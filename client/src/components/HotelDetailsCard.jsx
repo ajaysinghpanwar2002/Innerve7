@@ -1,7 +1,12 @@
 import React from 'react'
 import '../styles/components/hotelDetailCard.css'
+import { useNavigate } from 'react-router-dom';
 
-function HotelDetailsCard({name,address,phone,category,price,num_reviews,timezone,available,about,img}) {
+function HotelDetailsCard({id,name,address,phone,category,price,num_reviews,timezone,available,about,img}) {
+    const navigate = useNavigate();
+    const handleClick =()=>{
+        navigate(`/payment/${id}/${price}`);
+    }
     return (
         <div className="hotel-details-card">
             <div className="hotel-details-card__image">
@@ -17,6 +22,9 @@ function HotelDetailsCard({name,address,phone,category,price,num_reviews,timezon
                 <p className="hotel-details-card__timezone">Timezone: {timezone}</p>
                 <p className="hotel-details-card__availability">booking:{available ? 'Available' : 'Not available'}</p>
                 <p className="hotel-details-card__about">About Pricing:{about}</p>
+            </div>
+            <div>
+                <button onClick={handleClick}>Book Now</button>
             </div>
         </div>
     )

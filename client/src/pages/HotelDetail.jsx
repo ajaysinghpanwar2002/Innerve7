@@ -51,6 +51,7 @@ function HotelDetail() {
                         {Array.isArray(HotelDetailsData) && HotelDetailsData.length > 0 ? (
                             <div>
                                 <HotelDetailsCard
+                                    id={HotelDetails?.location_id}
                                     key={HotelDetails?.location_id}
                                     name={HotelDetails?.name}
                                     num_reviews={HotelDetails?.num_reviews}

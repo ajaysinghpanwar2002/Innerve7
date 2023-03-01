@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Home from './pages/Home';
 import Hotels from "./pages/Hotels";
 import HotelDetail from "./pages/HotelDetail";
+import Payment from "./pages/Payment";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/hotels/:id" element={<HotelDetail />} />
+        <Route path="/payment/:id/:price" element={<Payment />} />
       </Routes>
     </Router>
   );
