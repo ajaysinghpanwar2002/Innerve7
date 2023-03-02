@@ -48,7 +48,38 @@ router.post('/', async (req, res) => {
         res.status(201).json({ status: 401, error })
     }
 })
-
+router.post('/payment', async (req, res) => {
+    console.log(req.body);
+    const { EmailAddress, Price } = req.body;
+    try {
+        const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            service: "gmail",
+            secure: false,
+            auth: {
+                user: process.env.GMAIL,
+                pass: process.env.GMAIL_SECRET_KEY
+            }
+        })
+        const mailOptions = {
+            from: process.env.GMAIL,
+            to: EmailAddress,
+            subject: "Payment request via Stripe",
+            html: `<p>Here is your Stripe payment link:<p/><a href='https://buy.stripe.com/test_28o2as8IGeFK2Fa288'>Stripe Payment link</a><br/> Your total bill is ${Price}`,
+        }
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log("Error", error)
+            } else {
+                console.log("Email sent" + info.response);
+                res.status(201).json({ status: 201, info })
+            }
+        })
+    } catch (error) {
+        res.status(201).json({ status: 401, error })
+    }
+})
 router.get('/', async (req, res) => {
     try {
         res.json({
