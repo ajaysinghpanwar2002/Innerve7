@@ -17,6 +17,10 @@ app.use ("/users",userRouter);
 const paymentRouter = require('./routes/Payment')
 app.use ("/payment", paymentRouter);
 
+// Router for registering user
+const registerRouter = require('./routes/Register')
+app.use ("/register", registerRouter);
+
 db.sequelize.sync().then((req) => {
     app.listen(3001, () => {
         console.log("server running on port 3001");

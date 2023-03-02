@@ -21,6 +21,7 @@ function Hotels() {
     const [location, setLocation] = useState('');
     const [adults, setAdults] = useState('');
     const [radius, setRadius] = useState('');
+    const [phone, setPhone] = useState('');
     // latitude and longitude
     const [lat, setLat] = useState('');
     const [lon, setLon] = useState('');
@@ -38,6 +39,7 @@ function Hotels() {
                 setCheckOUT(userData.data[userData.data.length - 1].checkOutDate);
                 setLocation(userData.data[userData.data.length - 1].Destination);
                 setAdults(userData.data[userData.data.length - 1].NoOfGuests);
+                setPhone(userData.data[userData.data.length - 1].PhoneNo);
                 setRadius('5000');
 
                 const options = {
@@ -56,7 +58,7 @@ function Hotels() {
                 setLon(locationData.data.results[0].location.lng);
             } catch (error) {
                 console.error(error);
-                <ErorComponent/>
+                <ErorComponent />
             }
         };
         fetchData();
@@ -66,6 +68,16 @@ function Hotels() {
     const checkInDate = dateFormat(checkIn, 'yyyy-mm-dd');
     // const checkOutDate = dateFormat(checkOut, 'yyyy-mm-dd');
 
+    // fitering for email and phone numbers 
+    const phoneNumber = phone.replace(/ /g, "")
+    // console.log(phoneNumber);
+
+    const goodEmail = email.replace(/ /g, "")
+    // console.log(goodEmail);
+
+    const newuserEmail = goodEmail.toLowerCase();
+    // console.log(newuserEmail);
+    
     useEffect(() => {
         const fetchHotels = async () => {
             try {
@@ -95,12 +107,24 @@ function Hotels() {
             } catch (error) {
                 console.error(error);
                 setLoading(false);
-                <ErorComponent/>
+                <ErorComponent />
             }
         };
         fetchHotels();
     }, [lat, lon, adults, checkInDate]);
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let payload = {}
+        for (let i = 0; i < event.target.length - 1; i++) {
+            payload[event.target[i].id] = (event.target[i].value)
+        }
+        console.log(payload.EmailAddress); 
+        axios.post("http://localhost:3001/register", JSON.parse(JSON.stringify(payload))).then((Response) => {
+            console.log("user registered worked")
+        });
+        alert("subscibed");
+    }
 
     return (
         <>
@@ -113,7 +137,7 @@ function Hotels() {
                 width: 'auto',
                 background: '#f8f8f8'
             }}>
-                <h1>List of Hotels in {location}</h1>
+                <h1>Welcome {firstName}, Here is the List of Hotels in {location}</h1>
             </div>
             <div>
                 {
@@ -152,6 +176,85 @@ function Hotels() {
                         </div>
                     )
                 }
+            </div>
+            <div style={{
+                position: "fixed",
+                bottom: 50,
+                right: 50,
+                "z-index": 9999,
+                background: "#ECEBEB",
+                "border-radius": "10px"
+            }}>
+                <div style={{
+                    fontSize: "30px",
+                    fontFamily: "san-serif",
+                    fontWeight: "bold",
+                    color: "black",
+                    paddingLeft:"20px",
+                    paddingRight:"20px"
+                }}>
+                    Personalised hotel<br />recomendation in {location}
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="phoneNo" style={{
+                            "font-size": "14px",
+                            "font-weight": "bold",
+                            "margin-bottom": "5px",
+                            "paddingRight": "40px",
+                            "paddingLeft":"20px",
+                            "paddingTop":"20px"
+                        }}>Phone No:</label>
+                        <input type="tel" id="PhoneNo" placeholder="(Ex. PhoneNo...)" value={phoneNumber} style={{
+                            "padding": "5px",
+                            "border": "1px solid #ccc",
+                            "border-radius": "3px",
+                            "width": "200px",
+                            "font-size": "14px",
+                            marginRight:"10px"
+                        }} />
+                    </div>
+                    <div>
+                        <label htmlFor="emailAddress" style={{
+                            "font-size": "14px",
+                            "font-weight": "bold",
+                            "margin-bottom": "5px",
+                            "paddingRight": "13px",
+                            "paddingLeft":"20px",
+                            "paddingTop":"20px"
+                        }}>Email Address:</label>
+                        <input type="email" id="EmailAddress" placeholder="(Ex. ajaysingh1234@gmail....)" value={newuserEmail} style={{
+                            "padding": "5px",
+                            "border": "1px solid #ccc",
+                            "border-radius": "3px",
+                            "width": "200px",
+                            "font-size": "14px",
+                            marginRight:"10px"
+
+                        }} />
+                    </div>
+                    <div>
+                        <label htmlFor="phoneNo" style={{
+                            "font-size": "14px",
+                            "font-weight": "bold",
+                            "margin-bottom": "5px",
+                            "paddingRight": "40px",
+                            "paddingLeft":"27.5px",
+                            "paddingTop":"20px"
+                        }}>Location:</label>
+                        <input type="text" id="Location" placeholder="(Ex. Delhi...)" value={location} style={{
+                            "padding": "5px",
+                            "border": "1px solid #ccc",
+                            "border-radius": "3px",
+                            "width": "200px",
+                            "font-size": "14px",
+                            marginRight:"10px"
+                        }} />
+                    </div>
+                    <button type="submit" style={{
+                        marginBottom:"20px"
+                    }}>Subscribe(It's free)</button>
+                </form>
             </div>
         </>
     )
