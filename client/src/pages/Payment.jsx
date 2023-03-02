@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import StripeContainer from '../components/StripeContainer';
+import '../styles/pages/payment.css'
 
 function Payment() {
     let { id, price } = useParams();
@@ -28,13 +29,13 @@ function Payment() {
         }}>
             <h1>Book your hotel with Udchalein</h1>
             {showItem ? (<StripeContainer />) : (
-                <div>
-                    <div>
+                <div className='payment-page'>
+                    <div className='paymentApp'>
                         <h3>Bill Range: {price}<br />For the hotel id {id}</h3>
                         <button onClick={() => setShowItem(true)}>Book Hotel</button>
                     </div>
-                    <div>
-                        <h1>Noooo I dont trust your payment gateway, I'll prefer Stripe</h1>
+                    <div className='paymentviastripe'>
+                        <h3>Noooo I dont trust your payment gateway, I'll prefer Stripe</h3>
                         <div>
                             <form onSubmit={handleSubmit}>
                                 <div>
