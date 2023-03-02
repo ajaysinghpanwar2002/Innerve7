@@ -48,9 +48,9 @@ https://rapidapi.com/trueway/api/trueway-geocoding
 ```
 https://www.twilio.com/whatsapp
 ```
-5) EmailJs Package
+5) NodeMailer 
 ```
-https://www.emailjs.com/
+https://github.com/nodemailer/nodemailer
 ```
 6) Stripe Payment Gateway
 ```
