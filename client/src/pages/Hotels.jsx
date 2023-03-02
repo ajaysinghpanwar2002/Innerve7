@@ -44,7 +44,7 @@ function Hotels() {
 
                 const options = {
                     method: 'GET',
-                    // url: 'https://trueway-geocoding.p.rapidapi.com/Geocode',
+                    url: 'https://trueway-geocoding.p.rapidapi.com/Geocode',
                     params: { address: location, language: 'en' },
                     headers: {
                         'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_API_KEY,
@@ -83,7 +83,7 @@ function Hotels() {
             try {
                 const options = {
                     method: 'GET',
-                    // url: 'https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng',
+                    url: 'https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng',
                     params: {
                         latitude: lat,
                         longitude: lon,

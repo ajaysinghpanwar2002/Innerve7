@@ -17,7 +17,7 @@ function HotelDetail() {
             try {
                 const options = {
                     method: 'GET',
-                    // url: 'https://travel-advisor.p.rapidapi.com/hotels/get-details',
+                    url: 'https://travel-advisor.p.rapidapi.com/hotels/get-details',
                     params: { location_id: id, lang: 'en_US' },
                     headers: {
                         'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_API_KEY,
