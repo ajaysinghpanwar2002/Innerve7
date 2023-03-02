@@ -66,7 +66,7 @@ function Payment() {
                                         "paddingLeft": "20px",
                                         "paddingTop": "20px"
                                     }}>Your Total Bill:</label>
-                                    <input type="number" id="Price" placeholder="(Ex. Your Total Bill....)" value={price} style={{
+                                    <input type="string" id="Price" placeholder="(Ex. Your Total Bill....)" value={price} style={{
                                         "padding": "5px",
                                         "border": "1px solid #ccc",
                                         "border-radius": "3px",
