@@ -14,11 +14,11 @@
 
 ### To implement an Application that allows users to book a hotel ticket using voice commands, we are following these steps:
 
-1) For prototyping and saving time, Instead of building our own NLP model. We’ll be using Google Speech-to-text API.
+1) For prototyping and saving time, Instead of building our own NLP model. We’ll be using Google Speech-to-text API via react-speech-recognition.
 2) When a user initiates the booking process, the application will ask for their travel details, such as the origin, destination, travel date, number of guests, etc.
 3) The Application then uses Google Hotels API to search for available hotels that match the user's criteria. The system then provide the user with a list of hotel suggestions, either through the voice assistant or through other channels like email or WhatsApp using emailJS and whatsApp business API.
 4) The user can then select a hotel from the list and provide their contact details, such as their phone number and email address. The application will store this information securely in SQL database and use it to send the user a payment link.
-5) The application will be sending a payment link generated from razorpay (payment gateway) to the respective email address using emailJS package.
+5) The application will be sending a payment link generated from Stripe (payment gateway) to the respective email address using Nodemailer.
 6) After the payment is completed, the Application will inform the user whether the booking was successful or not. If there are any issues with the booking, such as a lack of availability or a problem with the payment, the application will provide clear and helpful feedback to the user.
 7) Overall, the key to building a successful voice-based hotel booking application is to make the user experience as smooth and intuitive as possible.
 
